@@ -20,7 +20,8 @@ def rnn_data(data, time_steps, labels=False):
             except AttributeError:
                 rnn_df.append(data.iloc[i + time_steps])
         else:
-            data_ = data.iloc[i: i + time_steps].as_matrix()
+            #data_ = data.iloc[i: i + time_steps].as_matrix()
+            data_ = data.iloc[i: i + time_steps].to_numpy()
             rnn_df.append(data_ if len(data_.shape) > 1 else [[i] for i in data_])
 
     return np.array(rnn_df, dtype=np.float64)
